@@ -1,44 +1,37 @@
 class Solution:
     def findAndReplacePattern(self, words: List[str], pattern: str) -> List[str]:
         
-        def getOrder(s):
+        patt = set()
+        order = []
+        for i in pattern:
+            if i not in patt:
+                order.append(i)
+                patt.add(i)
+        
+        def match(x):
             
-            s = s + "#"
+            
+            if len(set(x)) != len(order):
+                return False
+            
+            p = 0
             
             d = {}
-            x = 0
-            for i in s:
+            
+            for i in x:
                 if i not in d:
-                    d[i] = str(x)
-                    x+=1
+                    d[i] = order[p]
+                    p+=1
+            
+            changed = []
+            
+            for i in x:
+                changed.append(d[i])
+                
+            return "".join(changed) == pattern
+        
+        
+        
+        return list(filter(match, words))
                     
-            ok = []
-            c = 1
-            prev = s[0]
-            for i in range(1, len(s)):
-                
-                if s[i] == prev:
-                    c += 1
-                else:
-                    ok.append("_" + d[s[i]] + "*" + str(c))
-                    c = 1
-                    prev = s[i]
-            
-                
-                
-            
-            return "".join(ok)
-                
-            
-            
-        #print(getOrder("xyx"))
         
-        p = getOrder(pattern)
-        
-        ans = []
-        
-        for i in words:
-            if getOrder(i) == p:
-                ans.append(i)
-        
-        return ans
