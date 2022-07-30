@@ -21,14 +21,13 @@ class Solution:
             for j in i:
                 c[j] += 1
             
-            b = True
-            
+        
             for x in chars:
                 
                 if c[x] < chars[x]:
-                    b = False
+                    break
                 
-            if b:
+            else:
                 ans.append(i)
                                     
         
