@@ -1,4 +1,4 @@
-class Solution:
+class Solution(object):
     def uniquePaths(self, n, m):
 
-        return comb(m + n - 2, min(n - 1, m - 1))
+        return math.comb(m + n - 2, m-1)
