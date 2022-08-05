@@ -4,41 +4,23 @@ class Solution:
         
         n = len(nums)
         
-        zero = bisect.bisect_left(nums, 0)
+        left = 0
+        right = n-1
+        ans = [0 for i in range(n)]
         
-        if zero == 0:
-            return list(map(lambda x : x*x , nums))
+        x = n - 1
         
-        if zero == n:
+        while left <= right:
             
-            return list(map(lambda x : x*x , nums))[::-1]
-        
-        i = zero
-        j = zero - 1
-        
-        ans = []
-        
-        while j >=0 and i < n:
-            
-            if nums[i] < -nums[j]:
-                ans.append(nums[i]**2)
-                i+=1
-            
+            if abs(nums[left]) > abs(nums[right]):
+                ans[x] = nums[left]**2
+                left += 1
             else:
-                ans.append(nums[j]**2)
-                j-=1
-        
-        while j >= 0:
-            ans.append(nums[j]**2)
-            j-=1
-                
-        while i < n:
-            ans.append(nums[i]**2)
-            i+=1
+                ans[x] = nums[right]**2
+                right -= 1
+            x -=1
         
         return ans
             
-            
-            
-            
+        
         
