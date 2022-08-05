@@ -4,14 +4,8 @@ class Solution:
         
         dp = defaultdict(int)
         dp[0] = 1
-        
-        for i in range(target + 1):
-            
-            for x in nums:
-                
-                if x <= i:
-                    
-                    dp[i] += dp[i - x]
+        for i in range(1, target + 1):
+            dp[i] = sum([dp[i - num] for num in nums if num <= i])
         
         return dp[target]
     
