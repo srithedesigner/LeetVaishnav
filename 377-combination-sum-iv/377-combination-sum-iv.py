@@ -2,26 +2,18 @@ class Solution:
     def combinationSum4(self, nums: List[int], target: int) -> int:
         
         
-        d = defaultdict()
-        def recursion(x, target):
-            
-            if target in d:
-                return d[target]
-            
-            if x == len(nums):
-                return 0
-            
-            if target == 0:
-                return 1
-            
-            if target < 0:
-                return 0
-            
-            d[target] = recursion(0, target - nums[x]) + recursion(x + 1, target)
-            
-            return d[target]
+        dp = defaultdict(int)
+        dp[0] = 1
         
-        return recursion(0, target)
+        for i in range(target + 1):
+            
+            for x in nums:
+                
+                if x <= i:
+                    
+                    dp[i] += dp[i - x]
+        
+        return dp[target]
     
     
             
