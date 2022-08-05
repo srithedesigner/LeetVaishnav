@@ -2,8 +2,11 @@ class Solution:
     def combinationSum4(self, nums: List[int], target: int) -> int:
         
         
-        @lru_cache(None)
+        d = defaultdict()
         def recursion(x, target):
+            
+            if target in d:
+                return d[target]
             
             if x == len(nums):
                 return 0
@@ -14,8 +17,9 @@ class Solution:
             if target < 0:
                 return 0
             
+            d[target] = recursion(0, target - nums[x]) + recursion(x + 1, target)
             
-            return recursion(0, target - nums[x]) + recursion(x + 1, target)
+            return d[target]
         
         return recursion(0, target)
     
