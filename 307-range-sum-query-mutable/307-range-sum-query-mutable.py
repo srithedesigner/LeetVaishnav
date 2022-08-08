@@ -4,12 +4,12 @@ class SegmentTree:
         self.nums = nums
         self.tree = defaultdict()
         self.n = len(nums)
-
+        
         def build(node, left, right):
 
             if left == right:
-                #print(len(self.tree), node)
-
+                
+                #self.ma = max(self.ma, (node, left, right))    
                 self.tree[node] = self.nums[left]
 
             else:
@@ -81,7 +81,7 @@ class NumArray:
         
         self.stree = SegmentTree(nums)
         
-        #print(len(self.stree.tree))
+        #print(self.stree.tree)
         
 
     def update(self, index: int, val: int) -> None:
