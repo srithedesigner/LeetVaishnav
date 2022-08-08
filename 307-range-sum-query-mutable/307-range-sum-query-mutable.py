@@ -81,7 +81,7 @@ class NumArray:
         
         self.stree = SegmentTree(nums)
         
-        print(len(self.stree.tree))
+        #print(len(self.stree.tree))
         
 
     def update(self, index: int, val: int) -> None:
