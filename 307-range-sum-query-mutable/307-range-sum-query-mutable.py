@@ -1,54 +1,94 @@
+class SegmentTree:
+
+    def __init__(self, nums):
+        self.nums = nums
+        self.tree = defaultdict()
+        self.n = len(nums)
+
+        def build(node, left, right):
+
+            if left == right:
+                print(len(self.tree), node)
+
+                self.tree[node] = self.nums[left]
+
+            else:
+
+                mid = left + (right - left) // 2
+
+                build(2 * node, left, mid)
+                build(2 * node + 1, mid + 1, right)
+
+                self.tree[node] = self.tree[node * 2] + self.tree[node * 2 + 1]
+
+        build(1, 0, self.n - 1)
+
+    def update(self, ind, val):
+
+        diff = self.nums[ind] - val
+        self.nums[ind] = val
+
+        def find(node, left, right):
+
+            if left == right and left == ind:
+                return node
+
+            if left > ind or right < ind:
+                return None
+
+            else:
+
+                mid = left + (right - left) // 2
+
+                X = find(2 * node, left, mid)
+                y = find(2 * node + 1, mid + 1, right)
+
+                if X is None:
+                    return y
+                return X
+
+         
+        x = find(1, 0, self.n - 1)
+
+        while x >= 1:
+             
+            self.tree[x] -= diff
+            x = x // 2
+         
+
+    def query(self, start, end):
+
+        def recursion(node, left, right):
+
+            if right < start or left > end:
+                return 0
+
+            if start <= left and end >= right:
+                return self.tree[node]
+
+            mid = left + (right - left) // 2
+
+            return recursion(node * 2, left, mid) + recursion(node * 2 + 1, mid + 1, right)
+
+        return recursion(1, 0, self.n - 1)
+
+
+
+
 class NumArray:
 
     def __init__(self, nums: List[int]):
-        self.nums = nums
         
-        n = len(nums)
-        ft = [0]*(n+1)
-        
-        for i in range(1, len(ft)):
-            x = nums[i-1]
-            while(i < len(ft)):
-                ft[i] += x;
-                i += (i&(-i))
-                
-        self.ft = ft
-        
-    def sum(self, ind):
-        if ind < 1:
-            return 0
-        
-        ans = 0
-        while(ind != 0):
-            
-            ans += self.ft[ind]
-            ind -= (ind & (-ind))
-        return ans
-        
-                  
+        self.stree = SegmentTree(nums)
         
 
     def update(self, index: int, val: int) -> None:
-        x = self.nums[index]
-        self.nums[index] = val
-        val = val - x
-        i = index+1
-        while(i < len(self.ft)):
-            self.ft[i] += val;
-            i += (i&(-i))
+        self.stree.update(index, val)
+        
 
     def sumRange(self, left: int, right: int) -> int:
         
-        suml = self.sum(left)
-        sumr = self.sum(right + 1)
-        #print(suml, sumr)
-        
-        return sumr - suml
-        
+        return self.stree.query(left, right)
         
 
-
-# Your NumArray object will be instantiated and called as such:
-# obj = NumArray(nums)
-# obj.update(index,val)
-# param_2 = obj.sumRange(left,right)
+ 
