@@ -8,7 +8,7 @@ class SegmentTree:
         def build(node, left, right):
 
             if left == right:
-                print(len(self.tree), node)
+                #print(len(self.tree), node)
 
                 self.tree[node] = self.nums[left]
 
@@ -80,6 +80,8 @@ class NumArray:
     def __init__(self, nums: List[int]):
         
         self.stree = SegmentTree(nums)
+        
+        print(len(self.stree.tree))
         
 
     def update(self, index: int, val: int) -> None:
