@@ -14,6 +14,8 @@ class Solution:
             
             if root is None:
                 return True
+            
+            print(root.val)
     
             if root.val >= _max or root.val <= _min:
                 
