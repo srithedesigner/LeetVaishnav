@@ -3,23 +3,21 @@ class Solution:
         
         n = len(nums)
          
-        suffix = [None]*len(nums)
+        ans = [1 for _ in range(n)]
         
-        suffix[-1] = nums[-1]
+        pref = 1
         
-        for i in range(n-2, -1, -1):
-            suffix[i] = suffix[i+1] * nums[i]
+        for i in range(n):
+            
+            ans[i] = pref
+            pref *= nums[i]
             
         
-        prefix = 1
+        suff = 1
         
-        ans = []
-        
-        for i in range(n-1):
+        for i in range(n-1, -1, -1):
+            ans[i] *= suff
+            suff *= nums[i]
             
-            ans.append(prefix * suffix[i+1])
-            prefix *= nums[i]
-        
-        ans.append(prefix)
-        
         return ans
+        
