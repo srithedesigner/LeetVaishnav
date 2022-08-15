@@ -12,25 +12,6 @@ class Solution:
             }
         
         
-        order = [
-                    "I",
-                    "V",
-                    "X",
-                    "L",
-                    "C",
-                    "D",
-                    "M",
-                ]
-        
-        order.sort(key = lambda x : d[x])
-        
-        order_id = {
-            
-        }
-        
-        for ind, val in enumerate(order):
-            
-            order_id[val] = ind
         
         
         x = 0
@@ -38,12 +19,9 @@ class Solution:
         ans = 0
         
         while x < len(s):
-            
-            #print(x)
-            
             dif = 0
             
-            while x < len(s)-1  and order_id[s[x]] < order_id[s[x+1]]:
+            while x < len(s)-1  and d[s[x]] < d[s[x+1]]:
                 
                 dif += d[s[x]]
                 x+=1
