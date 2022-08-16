@@ -3,14 +3,11 @@ class Solution:
         
         se = Counter(s)
         
-        ans = -1
         
-        for i in range(len(s)-1, -1, -1):
+        
+        for ind, bal in enumerate(s):
             
-            if se[s[i]] == 1:
-                ans = i
+            if se[bal] == 1:
+                return ind
                 
-                
-                
-        
-        return ans
+        return -1
