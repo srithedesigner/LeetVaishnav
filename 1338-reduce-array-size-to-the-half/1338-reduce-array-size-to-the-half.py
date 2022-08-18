@@ -6,20 +6,32 @@ class Solution:
         
         s = list(set(arr))
         
-        ans = 0
         
-        s.sort(key = lambda x : c[x], reverse = True)
-        #print(s)
+        d = defaultdict(int)
+        
+        for i in c:
+            
+            d[c[i]] += 1
+    
+        
+        i = len(arr)
+        x = 0
         p = len(arr)
-        i = 0
-        
-        while p > len(arr)//2:
+        print(d)
+        while p > len(arr)// 2 and  i >= 0:
             
-            p -= c[s[i]]
-            #print(arr[i])
-            i+=1
             
-        
-        return i
+            if i in d:
+                
+                while p > len(arr)//2 and d[i] > 0:
+                    p -= i
+
+           
+                    x += 1
+                    d[i]-=1
+            i-=1 
+        return x
+            
+            
             
         
