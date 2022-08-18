@@ -17,7 +17,7 @@ class Solution:
         i = len(arr)
         x = 0
         p = len(arr)
-        print(d)
+        #print(d)
         while p > len(arr)// 2 and  i >= 0:
             
             
