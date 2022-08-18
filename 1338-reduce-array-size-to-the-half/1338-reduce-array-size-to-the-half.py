@@ -12,14 +12,14 @@ class Solution:
         #print(s)
         p = len(arr)
         i = 0
-        x = 0
+        
         while p > len(arr)//2:
             
             p -= c[s[i]]
             #print(arr[i])
             i+=1
-            x += 1
+            
         
-        return x
+        return i
             
         
