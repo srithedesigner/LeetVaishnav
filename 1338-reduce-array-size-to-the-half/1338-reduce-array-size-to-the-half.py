@@ -8,7 +8,7 @@ class Solution:
         
         ans = 0
         
-        s.sort(key = lambda x : -c[x])
+        s.sort(key = lambda x : c[x], reverse = True)
         #print(s)
         p = len(arr)
         i = 0
