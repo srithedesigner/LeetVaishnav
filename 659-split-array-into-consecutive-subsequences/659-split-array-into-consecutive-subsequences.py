@@ -3,17 +3,15 @@ class Solution:
         
         c = Counter(nums)
         
-        print(c)
+         
         tails = defaultdict(lambda : 0)
         
         nums = sorted(list(set(nums)))
-        #print(nums)
+        
         for x in nums:
             
             if tails[x-1] + min(c[x+1], c[x+2]) < c[x]:
-                
-                 
-                #print(x)
+
                 return False
             
             if c[x] <= 0:
