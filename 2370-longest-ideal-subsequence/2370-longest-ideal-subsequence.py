@@ -2,7 +2,7 @@ class Solution:
     def longestIdealString(self, s: str, k: int) -> int:
         
         
-        LIS_ending_at_char = [0] * 26
+        LIS = [0] * 26
         
         ans = 1
         for c in s:
@@ -14,12 +14,12 @@ class Solution:
                 
                 if 0 <= ind+i < 26:
                     
-                    mx = max(mx, LIS_ending_at_char[ind + i])
+                    mx = max(mx, LIS[ind + i])
                 
-            LIS_ending_at_char[ind] = mx + 1
+            LIS[ind] = mx + 1
                     
                     
-            ans = max(ans, LIS_ending_at_char[ind])
+            ans = max(ans, LIS[ind])
             
     
         
