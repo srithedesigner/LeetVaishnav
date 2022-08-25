@@ -1,34 +1,44 @@
 class Solution:
     def numWays(self, steps: int, arrLen: int) -> int:
         
+        arrLen = min(arrLen, steps//2 + 2)
         
         mod = 10**9 + 7
         
-        @lru_cache(None)
-        def position(pos, steps):
-            
-            if steps == 0:
-                
-                if pos == 0:
-                    return 1
-                return 0
-            
-            ans = 0
-            
-            #left :
-            
-            if pos > 0:
-                
-                ans += position(pos - 1, steps - 1)
-            #right:
-            
-            if pos < arrLen - 1:
-                ans += position(pos + 1, steps - 1)
-            
-            #stay
-            
-            ans += position(pos, steps - 1)
-            
-            return ans%mod
+        dp = [0 for i in range(arrLen)]
+        buf = [0 for i in range(arrLen)]
         
-        return position(0, steps)
+        dp[0] = 1
+        
+        for i in range(1, steps+1):
+            
+            
+            
+            for j in range(0, arrLen):
+                
+                x = 0
+                x += (dp[j]%mod)
+                
+                if j-1 >= 0:
+                    
+                    x += (dp[j-1]%mod)
+                
+                if j + 1 < arrLen:
+                    x += (dp[j+1]%mod)
+                    
+                x %= mod
+                
+                buf[j] = x
+            
+            for c in range(len(buf)):
+                dp[c] = buf[c]
+                
+        
+        
+        return dp[0]
+            
+            
+            
+        
+        
+        
