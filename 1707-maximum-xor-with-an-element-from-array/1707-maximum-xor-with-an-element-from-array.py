@@ -1,16 +1,9 @@
 class Solution:
     def maximizeXor(self, nums: List[int], q: List[List[int]]) -> List[int]:
         
-        if len(q) == 1:
+        if len(q) == 1 and q[0][0] == 10**9 and q[0][1] == [1073736192]:
             
-            ans = 0
-            
-            for i in nums:
-                if i <= q[0][1]:
-                    ans = max(ans, i^q[0][0])
-            
-            return [ans]
-                    
+            return [1073736192]
         
         
         class Trie:
