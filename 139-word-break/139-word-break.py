@@ -16,7 +16,7 @@ class Solution:
             
             ok = False
             
-            for x in range(i, len(s)):
+            for x in range(i, min(len(s), i + 21)):
                 
                 w.append(s[x])
                 
