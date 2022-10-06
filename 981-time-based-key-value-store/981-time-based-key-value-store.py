@@ -18,10 +18,3 @@ class TimeMap:
             return ""
         
         return self.ds[key][x-1][1]
-        
-
-
-# Your TimeMap object will be instantiated and called as such:
-# obj = TimeMap()
-# obj.set(key,value,timestamp)
-# param_2 = obj.get(key,timestamp)
