@@ -2,8 +2,8 @@ class Solution:
     def orderlyQueue(self, s: str, k: int) -> str:
         
         if k != 1:
+            
             return "".join(sorted(s))
-    
         
         ans = s
         
@@ -12,3 +12,6 @@ class Solution:
             ans = min(ans, s[i:] + s[:i])
         
         return ans
+        
+        
+        
